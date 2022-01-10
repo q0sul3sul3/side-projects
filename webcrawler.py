@@ -5,6 +5,7 @@
 import requests
 import bs4
 import argparse
+import datetime as dt
 
 parser = argparse.ArgumentParser()
 parser.add_argument("keyword", nargs='?', default= '資料科學', type=str, help="get the keyword")
@@ -17,7 +18,7 @@ src = "https://www.ptt.cc/bbs/{}/search?q=".format(args.table) + args.keyword
 
 r = requests.get(src) # get 此頁面的 HTML
 soup = bs4.BeautifulSoup(r.text, "html.parser") # 用bs4 解析html 資料格式
-
+print(dt.date.today())
 if args.write:
 
     file = open('/tmp/{}.csv'.format(args.keyword), 'w')
