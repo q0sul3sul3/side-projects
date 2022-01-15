@@ -36,8 +36,8 @@ if args.write:
         r = requests.get(src) # get 此頁面的 HTML
         soup = bs4.BeautifulSoup(r.text, "html.parser") # 用bs4 解析html 資料格式
         for j in soup.find_all('div', class_="r-ent"):
-            if j.span and int(j.span.string) >= 10: # 有推文數 and 推文數 > 10
-    #         if j.span and j.span['class']==['hl', 'f3']:
+#             if j.span and int(j.span.string) >= 10: # 有推文數 and 推文數 > 10
+            if j.span and (j.span['class']==['hl', 'f3'] or j.span['class']==['hl', 'f1']):
                 print('ptt.cc' + j.a['href'], j.span.string, j.a.string)
                 data = 'ptt.cc' + j.a['href'] + ' ' + j.span.string + ' ' + j.a.string + '\n'
                 file.write(data)
